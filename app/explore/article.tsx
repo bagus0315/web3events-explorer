@@ -8,20 +8,24 @@ type Props = {
 };
 
 export const Article: React.FC<Props> = ({ web3event }) => {
+	// console.log(web3event.image);
+	
 	return (
 		<Link href={`/projects/${web3event.id}`}>
-			<article className="p-4 md:p-8">
-				{/* <div className="w-full h-[100px]">
+			<article className="p-3 md:p-4">
+				<div className="w-full h-[200px] relative rounded-lg overflow-hidden">
 					<Image
 						src={web3event.image}
 						fill={true}
 						alt={web3event.title}
 					/> 
-				</div> */}
-				<h2 className="z-20 text-xl font-medium duration-1000 lg:text-3xl text-zinc-200 group-hover:text-white font-display">
-					{web3event.title}
-				</h2>
-				<p className="z-20 mt-4 text-sm  duration-1000 text-zinc-400 group-hover:text-zinc-200">
+				</div>
+				<div className="lg:h-[80px] h-[50px]">
+					<h2 className="z-20 mt-4 text-lg font-medium duration-1000 lg:text-xl text-zinc-200 group-hover:text-white font-display">
+						{web3event.title}
+					</h2>
+				</div>
+				<p className="z-20 text-sm  duration-1000 text-zinc-400 group-hover:text-zinc-200">
 					{web3event.organizer}
 				</p>
 				<span className="text-xs duration-1000 text-zinc-200 group-hover:text-white group-hover:border-zinc-200 drop-shadow-orange">
