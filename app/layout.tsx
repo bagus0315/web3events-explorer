@@ -27,7 +27,7 @@ export default function RootLayout({
     <html lang="en"
       className={[inter.variable, calSans.variable].join(" ")}
     >
-      <body className="bg-black">
+      <body className="bg-black w-full">
         {children}
       </body>
     </html>

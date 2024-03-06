@@ -19,3 +19,17 @@ export const fetchWeb3event: any = async () => {
 
   // })
 };
+export const fetchWeb3eventMap: any = async () => {
+  const data = {
+    "pages": 0,
+    "page_size": 0,
+    "status": 1,
+    "time": "",
+    "time_to": "",
+    "type": 1
+  }
+  const result: any = await axios.post(`https://www.web3event.org/web3event/api/v2/map/events/query`,
+    data,
+  )
+  return result.data.data
+};

@@ -1,15 +1,15 @@
-"use Client"
 import { Navigation } from "../components/nav";
+import { fetchWeb3eventMap } from '../api/fetchdata';
+import MapView from "./mapView";
 
-export default function MapPage() {
+export default async function MapPage() {
+
+	const web3eventMap = await fetchWeb3eventMap();
+
     return (
 		<div className=" bg-gradient-to-tl from-zinc-900/0 via-zinc-900 to-zinc-900/0">
 			<Navigation />
-			<div className="container flex items-center justify-center min-h-screen px-4 mx-auto">
-				<div className="w-full mx-auto mt-32 text-center text-white">
-					Map
-				</div>
-			</div>
+			<MapView/>
 		</div>
     );
 };
