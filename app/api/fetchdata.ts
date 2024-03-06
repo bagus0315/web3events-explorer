@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Web3event } from "../components/web3eventType";
-import { headers } from "next/headers";
+import { Web3eventMapdata } from "../components/web3eventMapType";
 export const fetchWeb3event: any = async () => {
   // return new Promise((resolve, reject) => {
   const data = {

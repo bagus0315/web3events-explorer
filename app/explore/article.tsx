@@ -11,7 +11,7 @@ export const Article: React.FC<Props> = ({ web3event }) => {
 	// console.log(web3event.image);
 	
 	return (
-		<Link href={`/projects/${web3event.id}`}>
+		<Link href={`/explore/${web3event.id}`}>
 			<article className="p-3 md:p-4">
 				<div className="w-full h-[200px] relative rounded-lg overflow-hidden">
 					<Image

@@ -11,3 +11,99 @@
 .mapboxgl-ctrl-logo {
   display: none !important;
 }
+
+.mapboxgl-popup-content {
+  background-color: rgb(17, 17, 17) !important;
+}
+
+.mapboxgl-popup-tip {
+  border-top-color: rgb(17, 17, 17) !important;
+  border-bottom-color:rgb(17, 17, 17) !important;
+}
+
+.popup-container {
+  max-height: 280px;
+  overflow: auto;
+  scrollbar-width: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.event-content {
+            
+  display: flex;
+  flex-direction: column;
+ gap: 12px;
+}
+
+.event-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.event-title {
+  color: #64afff;
+  font-size: 17px;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.event-title:hover {
+  color: rgb(73, 49, 255);
+}
+
+.event-time {
+  color: #11bb1c;
+  font-size: 15px;
+  display: flex;
+}
+
+.event-time p {
+  margin-top: 2px;
+  margin-left: 4px;
+}
+
+.event-clock {
+  background-image: url(/clock.png);
+  background-size: cover;
+  background-color: transparent;
+  width: 25px;
+  height: 25px;
+}
+
+.event-place {
+  color: #fff;
+  font-size: 14px;
+  display: flex;
+}
+
+.event-place p {
+  margin-top: 2px;
+  margin-left: 4px;
+}
+
+.event-location {
+  background-image: url(/location.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 17px;
+  height: 19px;
+  margin-left: 6px;
+  margin-top: 3px;
+}
+
+.mapboxgl-ctrl-group {
+  background-color: #4a4a4a !important;
+}
+
+.mapboxgl-ctrl-group button {
+  height: 40px !important;
+  width: 40px !important;
+}
+
+.mapboxgl-ctrl-group button+button {
+  border-top: 1px solid #555 !important;
+}
+

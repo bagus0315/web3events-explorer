@@ -62,16 +62,17 @@ export type Web3eventMapdata = {
     source_type: number,
     is_ai_upload: number
 };
-export type Web3eventMapGeodata = {
-    type: "Feature",
-    properties: {
-        id: number,
-        title: string,
-        cluster: boolean,
 
-    },
-    geometry: {
-        type: "Point",
-        coordinates: [number, number]
-    }
+export type Web3eventMapGeodata = {
+    type: 'FeatureCollection';
+    features: GeoJSONFeature[];
 };
+
+export type GeoJSONFeature = {
+    type: 'Feature';
+    properties: { [key: string]: any };
+    geometry: {
+        type: 'Point';
+        coordinates: [number, number];
+    };
+}
