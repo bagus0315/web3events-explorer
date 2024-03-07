@@ -1,9 +1,9 @@
 "use client"
 import React from "react";
-import { Card } from "../components/card";
+import { Card } from "@/app/components/card";
 import { Article } from "./article";
-import { Web3event } from "../components/web3eventType";
-import { LoadingComponent } from "../components/loading";
+import { Web3event } from "@/app/components/web3eventType";
+import { LoadingComponent } from "@/app/components/loading";
 import { useEffect, useState } from "react";
 
 type Props = {

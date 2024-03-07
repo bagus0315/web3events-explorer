@@ -94,6 +94,10 @@
   margin-top: 3px;
 }
 
+.event-description p {
+  padding-bottom: 5px;
+}
+
 .mapboxgl-ctrl-group {
   background-color: #4a4a4a !important;
 }

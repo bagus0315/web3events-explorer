@@ -1,8 +1,6 @@
 // "use client"
 import React, { useEffect } from "react";
 import { Navigation } from "../components/nav";
-import { Card } from "../components/card";
-import { Article } from "./article";
 import { Web3event } from "../components/web3eventType";
 import axios from "axios";
 import { LoadingComponent } from "../components/loading";

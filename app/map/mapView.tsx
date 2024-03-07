@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import mapboxgl, { GeoJSONSource, Popup } from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { Web3eventMapdata, Web3eventMapGeodata, GeoJSONFeature } from '../components/web3eventMapType';
-import { Web3event } from '../components/web3eventType';
+import { MapPinIcon, ClockIcon } from 'lucide-react';
 
 type Props = {
     web3eventMap:Web3eventMapdata[], 
@@ -144,7 +144,7 @@ const initializeMap = ( map: mapboxgl.Map ) => {
                 popupHTML += 
                 `<div class="event-content">
                     <div class="event-title">
-                        <a href="/map/${event.properties.id}">${count}. ${event.properties.title}</a>
+                        <a href="/explore/${event.properties.id}">${count}. ${event.properties.title}</a>
                     </div>
                     <div class="event-detail">
                         <div class="event-time">
