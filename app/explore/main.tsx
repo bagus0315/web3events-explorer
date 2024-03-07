@@ -14,6 +14,7 @@ export const MainPage: React.FC<Props> = ({web3eventList}) => {
 
     const [ isLoading, setLoading ] = useState(true);
     const [ web3event, setWeb3event ] = useState<Web3event[]>([]);
+
     useEffect(() => {
         if (Array.isArray(web3eventList) && !undefined) {
             setWeb3event(web3eventList);
@@ -22,7 +23,8 @@ export const MainPage: React.FC<Props> = ({web3eventList}) => {
             setLoading(true);
             setWeb3event([]);
         }
-    },[web3eventList])
+    },[web3eventList]);
+
     return (
         <div>
         {
@@ -38,11 +40,11 @@ export const MainPage: React.FC<Props> = ({web3eventList}) => {
                 </div>
                 <div className="w-full h-px bg-zinc-800" />
                 <div className="grid grid-cols-1 gap-4 mx-auto lg:mx-0 md:grid-cols-2 lg:grid-cols-4">
-                    {web3eventList.map((web3event) => (
+                    {web3event.map((web3event) => (
                         <div className="grid grid-cols-1 gap-4">
-                        <Card key={1}>
-                            <Article web3event={web3event} />
-                        </Card>
+                            <Card key={1}>
+                                <Article web3event={web3event} />
+                            </Card>
                         </div>
                     ))}
                 </div>

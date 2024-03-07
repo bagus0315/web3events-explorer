@@ -1,23 +1,23 @@
 "use client"
 import React, { useEffect, useState } from 'react';
-import mapboxgl, { GeoJSONSource, Popup } from 'mapbox-gl';
+import mapboxgl, { GeoJSONSource } from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { Web3eventMapdata, Web3eventMapGeodata, GeoJSONFeature } from '../components/web3eventMapType';
-import { MapPinIcon, ClockIcon } from 'lucide-react';
 
 type Props = {
     web3eventMap:Web3eventMapdata[], 
 };
 
 const  MapView: React.FC<Props> = ({web3eventMap}) => {
-    mapboxgl.accessToken = "pk.eyJ1IjoidXJ0cmFkZSIsImEiOiJjbHJobHc5aDMwMGpyMmxzMWFoeWd2dzAxIn0.T4vKAOyvnvIrT2bkN-Uisw";
-
+    mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN!;
+    
     const [ pageIsMounted, setPageIsMounted ] = useState(false);
     const [ map, setMap ] = useState<mapboxgl.Map>();
 
     useEffect(() => {
 
         setPageIsMounted(true);
+
         const map = new mapboxgl.Map({
             container: 'web3eventMap',
             style: 'mapbox://styles/mapbox/dark-v11',
@@ -30,11 +30,9 @@ const  MapView: React.FC<Props> = ({web3eventMap}) => {
             new mapboxgl.NavigationControl({showCompass:false})
         );
         
-        // map.on("load", function () {
-        //     addDataLayer(map);
-        // })
         initializeMap(map);
         setMap(map);
+
         return () => {
             map.remove();
         }
@@ -55,7 +53,7 @@ const  MapView: React.FC<Props> = ({web3eventMap}) => {
         <div className="px-6 pt-16 mx-auto max-w-[100rem] lg:px-8 md:pt-20 lg:pt-24 h-screen">
                 <div className="max-w-2xl mx-auto lg:mx-0">
                     <h2 className="text-3xl font-bold tracking-tight text-zinc-100 sm:text-4xl">
-                        web3event
+                        CommuneAI
                     </h2>
                     <p className="mt-4 text-zinc-400">
                         This is description about web3events for peopel who love blockchain.
@@ -67,18 +65,19 @@ const  MapView: React.FC<Props> = ({web3eventMap}) => {
         </div>
     )
 
-}
-
+};
 
 export default MapView;
 
 const addDataLayer = (map: mapboxgl.Map, data: Web3eventMapGeodata) => {
+
     map.addSource('web3events', {
         'type': 'geojson',
         'data': data,
         'cluster': true,
         'clusterRadius': 50
     });
+
     map.addLayer({
         'id': 'clusters',
         'type': 'circle',
@@ -126,8 +125,8 @@ const initializeMap = ( map: mapboxgl.Map ) => {
             layers:['clusters']
         });
         
-        const clusterId = features[0].properties?.cluster_id;
-        const point_count = features[0].properties?.point_count;
+        const clusterId = features[0]?.properties?.cluster_id;
+        const point_count = features[0]?.properties?.point_count;
         const coordinates = e.lngLat;
         const source = map.getSource('web3events') as GeoJSONSource;
         source.getClusterLeaves(clusterId, point_count, 0, (error, events) => {
@@ -139,25 +138,27 @@ const initializeMap = ( map: mapboxgl.Map ) => {
             
             let popupHTML = '<div class="popup-container">';
             let count = 0;
+
             clusteredWeb3events.forEach(event => {
                 count = count + 1;
                 popupHTML += 
                 `<div class="event-content">
                     <div class="event-title">
-                        <a href="/explore/${event.properties.id}">${count}. ${event.properties.title}</a>
+                        <a href="/explore/${event?.properties?.id}">${count}. ${event?.properties?.title}</a>
                     </div>
                     <div class="event-detail">
                         <div class="event-time">
                             <div class="event-clock"></div>
-                        <p>${event.properties.start_time}</p>
+                        <p>${event?.properties?.start_time}</p>
                         </div>
                         <div class="event-place">
                             <div class="event-location"></div>
-                            <p>${event.properties.address}</p>
+                            <p>${event?.properties?.address}</p>
                         </div>
                     </div>
                 </div>`;
             });
+
             popupHTML += '</div>';
     
             const popup = new mapboxgl.Popup({
@@ -187,16 +188,16 @@ const initializeMap = ( map: mapboxgl.Map ) => {
         `<div class="popup-container">
             <div class="event-content">
                 <div class="event-title">
-                    <a href="/explore/${web3eventProperty.id}">${web3eventProperty.title}</a>
+                    <a href="/explore/${web3eventProperty?.id}">${web3eventProperty?.title}</a>
                 </div>
                 <div class="event-detail">
                     <div class="event-time">
                         <div class="event-clock"></div>
-                        <p>${web3eventProperty.start_time}</p>
+                        <p>${web3eventProperty?.start_time}</p>
                     </div>
                     <div class="event-place">
                         <div class="event-location"></div>
-                        <p>${web3eventProperty.address}</p>
+                        <p>${web3eventProperty?.address}</p>
                     </div>
                 </div>
             </div>

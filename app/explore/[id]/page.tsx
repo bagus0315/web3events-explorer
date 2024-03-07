@@ -10,7 +10,7 @@ interface PageProps {
     };
 }
 
- const Page: React.FC<PageProps> = async ({ params }) => {
+const Page: React.FC<PageProps> = async ({ params }) => {
 
     const { id } = params;
     const web3eventDetail: Web3eventDetail = await getWeb3eventDetail(id);
@@ -21,6 +21,6 @@ interface PageProps {
             <EventDetailPage web3eventDetail={ web3eventDetail }/>
         </div>
     );
-}
+};
 
 export default Page;

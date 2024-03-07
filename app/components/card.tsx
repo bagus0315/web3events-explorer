@@ -35,7 +35,6 @@ export const Card: React.FC<PropsWithChildren> = ({ children }) => {
 					style={style}
 				/>
 			</div>
-
 			{children}
 		</div>
 	);
