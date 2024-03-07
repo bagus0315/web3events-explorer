@@ -14,7 +14,7 @@ const calSans = Localfont({
 })
 
 export const metadata: Metadata = {
-  title: "Web3event map",
+  title: "CommuneAI web3event Map",
   description: "you can find web3 event here in map",
 };
 

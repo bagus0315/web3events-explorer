@@ -38,7 +38,7 @@ export const EventDetailPage: React.FC<Props> = ({web3eventDetail}) => {
                 ! isLoading && web3event
                 ? <div className="px-6 pt-20 mx-auto space-y-8 max-w-[100rem] lg:px-8 md:space-y-16 md:pt-24 lg:pt-32">
                     <div className="flex flex-col gap-4 lg:flex-row justify-center items-start">
-                        <div className="flex flex-col w-full max-w-[650px] mx-auto lg:mx-0 gap-4">
+                        <div className="flex flex-col w-full max-w-[650px] mx-auto lg:mx-0 gap-4 lg:w-[70%]">
                             <div className="w-full h-[400px] relative rounded-lg overflow-hidden">
                                 <Image
                                     src={web3event?.image}
@@ -90,7 +90,7 @@ export const EventDetailPage: React.FC<Props> = ({web3eventDetail}) => {
                                 </div>
                             </div>
                         </div>
-                        <div className="text-zinc-200 w-full max-w-[650px] mx-auto lg:mx-0">
+                        <div className="text-zinc-200 w-full max-w-[650px] mx-auto lg:mx-0 lg:w-[30%]">
                             <div className="p-4 rounded-lg bg-zinc-800 w-full">
                                 <div className="py-4">
                                     <p className=" text-3xl font-extrabold pl-4 border-l-8 border-green-400">About the event</p>
