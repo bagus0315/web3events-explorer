@@ -52,8 +52,8 @@ export const EventDetailPage: React.FC<Props> = ({web3eventDetail}) => {
                                         web3event?.topics_name.length !== 0
                                         ?<div className="max-w-[80%] w-auto flex px-2 py-1 rounded-2xl bg-neutral-700 items-center">
                                             <div className="mr-2 text-xs text-zinc-300">Featured in</div>
-                                            {web3event?.topics_name.map(topic => 
-                                                <div className=" underline text-zinc-200">{topic}</div>    
+                                            {web3event?.topics_name.map((topic, key) => 
+                                                <div key={key} className=" underline text-zinc-200">{topic}</div>    
                                             )}
                                             <div className=""></div>
                                         </div>
