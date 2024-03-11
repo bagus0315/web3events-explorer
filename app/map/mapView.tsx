@@ -2,7 +2,12 @@
 import React, { useEffect, useState } from 'react';
 import mapboxgl, { GeoJSONSource } from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
-import { Web3eventMapdata, Web3eventMapGeodata, GeoJSONFeature } from '../components/web3eventMapType';
+import { Web3eventMapdata, 
+    Web3eventMapGeodata, 
+    GeoJSONFeature 
+} from '../components/web3eventMapType';
+import { AutoComplete, Input } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
 
 type Props = {
     web3eventMap:Web3eventMapdata[], 
@@ -13,6 +18,7 @@ const  MapView: React.FC<Props> = ({web3eventMap}) => {
     
     const [ pageIsMounted, setPageIsMounted ] = useState(false);
     const [ map, setMap ] = useState<mapboxgl.Map>();
+    const [popup, setPopup] = useState<mapboxgl.Popup>();
 
     useEffect(() => {
 
@@ -49,18 +55,57 @@ const  MapView: React.FC<Props> = ({web3eventMap}) => {
         }
     },[pageIsMounted, setMap, map, web3eventMap]);
     
-    return (
-        <div className="px-6 pt-16 mx-auto max-w-[100rem] lg:px-8 md:pt-20 lg:pt-24 h-screen">
-                <div className="max-w-2xl mx-auto lg:mx-0">
-                    <h2 className="text-3xl font-bold tracking-tight text-zinc-100 sm:text-4xl">
-                        CommuneAI
-                    </h2>
-                    <p className="mt-4 text-zinc-400">
-                        This is description about web3events for peopel who love blockchain.
-                    </p>
+    const web3eventListClickHandle = (event: Web3eventMapdata) => {
+        if (!map) return;
+    
+        const coordinates: [number,number] = [event.lon, event.lat];
+        map.flyTo({
+            center: coordinates,
+            zoom: 12, // Adjust the zoom level as needed
+        });
+    
+        // Open a popup at the clicked event's position
+        const popupContent = `<div class="popup-container">
+            <div class="event-content">
+                <div class="event-title">
+                    <a href="/explore/${event?.id}">${event?.title}</a>
                 </div>
-                <div className="w-full h-px mt-4 bg-zinc-800" />
-            <div id="web3eventMap" className="w-full h-[75vh]">
+                <div class="event-detail">
+                    <div class="event-time">
+                        <div class="event-clock"></div>
+                        <p>${event?.start_time}</p>
+                    </div>
+                    <div class="event-place">
+                        <div class="event-location"></div>
+                        <p>${event?.addr}</p>
+                    </div>
+                </div>
+            </div>
+        </div>`;
+        const newPopup = new mapboxgl.Popup()
+            .setLngLat(coordinates)
+            .setHTML(popupContent);
+
+        if (popup) popup.remove(); // Remove any existing popups
+        newPopup.addTo(map);
+        setPopup(newPopup);
+    }
+
+    return (
+        <div className="px-6 mx-auto max-w-[100rem] lg:px-8 pt-[70px] h-screen">
+            <div className="max-w-2xl mx-auto lg:mx-0">
+                <h2 className="text-3xl font-bold tracking-tight text-zinc-100 sm:text-4xl">
+                    CommuneAI
+                </h2>
+                <p className="mt-4 text-zinc-400">
+                    This is description about web3events for peopel who love blockchain.
+                </p>
+            </div>
+            <div className="w-full h-px mt-4 bg-zinc-800" />
+            <div className="w-full flex">
+                    <SideBar web3eventMap={web3eventMap} onTitleClick={web3eventListClickHandle}/>
+                <div id="web3eventMap" className="w-full h-[80vh]">
+                </div>
             </div>
         </div>
     )
@@ -114,6 +159,23 @@ const addDataLayer = (map: mapboxgl.Map, data: Web3eventMapGeodata) => {
             'circle-radius': 6,
             'circle-stroke-width': 1,
             'circle-stroke-color': '#fff'            
+        }
+    });
+
+    map.addLayer({
+        'id': 'event-description',
+        'type': 'symbol',
+        'source': 'web3events',
+        'filter': ['!', ['has', 'point_count']],
+        'layout': {
+            'text-field': ['get', 'title'],
+            'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
+            'text-size': 14,
+            'text-offset': [0.5, 0],
+            'text-anchor': 'top-left'     
+        },
+        'paint': {
+            'text-color': '#ffff00',
         }
     });
 };
@@ -231,8 +293,55 @@ const initializeMap = ( map: mapboxgl.Map ) => {
     map.on('mouseleave', 'unclustered-point', () => {
         map.getCanvas().style.cursor = '';
     }); 
+
 }
 
+const SideBar:React.FC<{ web3eventMap: Web3eventMapdata[]; onTitleClick: (event: Web3eventMapdata) => void }> = ({
+    web3eventMap,
+    onTitleClick,
+}) => {  
+
+    const [ filterEvent, setFilterEvent ] = useState<Web3eventMapdata[]>(web3eventMap);
+    const options = web3eventMap.map((event) => ({ 
+        value: event.title,
+        event: event
+    }));
+    
+    return (
+        <div className="w-[450px] h-[80vh] bg-black py-2 ">
+            <div className="h-[80px] px-2 py-2 flex justify-center items-center">
+                <AutoComplete
+                    popupClassName="certain-category-search-dropdown"
+                    popupMatchSelectWidth={500}
+                    style={{ width: 250 }}
+                    options={options}
+                    size="large"
+                    filterOption={(inputValue, option) =>
+                        option!.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
+                    }
+                    onSelect={(value,option) => {
+                        // setFilterEvent([option.event]);
+                        onTitleClick(option.event);
+                    }}
+                    // onDeselect={() => {
+                    //     setFilterEvent(web3eventMap)
+                    // }}
+                >
+                    <Input.Search size="large" placeholder="search event title"/>
+                </AutoComplete>
+            </div>
+            <div className="w-full h-[calc(80vh-96px)] px-2 overflow-y-auto scroll grid gap-2">
+                {filterEvent.map((event, key) => (
+                    <div key={key} onClick={() => onTitleClick(event)} className="w-full rounded-lg border border-zinc-800 px-3 py-2">
+                        <div className="text-zinc-200 font-semibold text-lg">{event?.title}</div>
+                        <div className="text-[#11bb1c] text-sm">{event?.start_time},{web3eventMap[0]?.end_time}</div>
+                        <div className="text-zinc-400 text-sm">By {event?.organizer}</div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    )
+}
 
 function convertPreDataToGeoJSON(web3eventMap: Web3eventMapdata[]): Web3eventMapGeodata {
     const features: GeoJSONFeature[] = web3eventMap.map(event => ({

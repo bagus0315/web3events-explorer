@@ -111,3 +111,61 @@
   border-top: 1px solid #555 !important;
 }
 
+/* width */
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #000;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #111;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.ant-input {
+  background-color: #333 !important;
+  color: #ddd !important;
+  border-color:#555 !important;
+}
+
+.ant-input:hover {
+  background-color: #333 !important;
+  color: #ddd !important;
+  border-color:#2b2976 !important;
+}
+
+.ant-input::placeholder {
+  color: #777;
+  font-weight: bold;
+}
+
+.ant-input-search-button {
+  color: #ddd !important;
+  background-color: #333 !important;
+  border-color:#555 !important;
+}
+
+.ant-input-search-button:hover {
+  background-color: #333 !important;
+  border-color:#555 !important;
+}
+
+.ant-select-dropdown {
+  background-color: #333 !important;
+  border-color:#555 !important;
+  width: 250px !important;
+}
+
+.ant-select-dropdown .ant-select-item {
+  color: #ddd !important;
+}
