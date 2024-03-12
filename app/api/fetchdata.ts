@@ -1,15 +1,15 @@
 import axios from "axios";
 
-export const fetchWeb3event = async () => {
+export const fetchWeb3event = async (pages: number = 0,status:number = 1, query_type: number = 0) => {
 
   const data = {
-    "pages": 0,
+    "pages": pages,
     "page_size": 20,
     "keywords": "",
     "topic": null,
     "pay": null,
-    "status": 1,
-    "query_type": 0
+    "status": status,
+    "query_type": query_type
   };
 
   try {
@@ -35,8 +35,7 @@ export const fetchWeb3eventMap = async () => {
 
   try {
     const result: any = await axios.post(`https://www.web3event.org/web3event/api/v2/map/events/query`,
-      data,
-    )
+      data)
     return result.data.data;
   } catch (error) {
     console.error('Error fetching web3event map data:', error);
