@@ -169,3 +169,59 @@
 .ant-select-dropdown .ant-select-item {
   color: #ddd !important;
 }
+
+.asteriskSwiper .swiper {
+  width: 100%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.asteriskSwiper .swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: 500px !important;
+  height: 370px !important;
+}
+
+.asteriskSwiper .swiper-slide img {
+  display: block;
+  width: 100%;
+}
+
+.asteriskSwiper .swiper-pagination-bullet {
+  background-color: #fff !important;
+}
+.popCitiesSwiper .swiper {
+  width: 100%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.popCitiesSwiper .swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: 300px;
+  height: 180px;
+}
+
+.popCitiesSwiper .swiper-slide img {
+  display: block;
+  width: 100%;
+  filter: brightness(50%);
+}
+
+.popCitiesSwiper .swiper-pagination-bullet {
+  background-color: #fff !important;
+}
+
+.popCitiesSwiper .swiper-button-prev, .popCitiesSwiper .swiper-button-next {
+  color: #fff !important;
+  background-color: rgba(93, 97, 104, 0.4) !important;
+  border: solid !important;
+  border-color: rgb(105, 105, 105) !important;
+  border-width: 1px !important;
+  border-radius: 5px !important;
+}
+.popCitiesSwiper .swiper-button-prev:after, .swiper-button-next:after {
+  font-size: 22px !important;
+}

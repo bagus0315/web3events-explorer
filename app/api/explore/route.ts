@@ -14,7 +14,7 @@ export async function POST(req: Request) {
 
     // return res.status(200).json({data: result.data.data});
   } catch (error: any) {
-    console.error('Error fetching web3event map data:', error);
+    console.error('Error fetching web3event data:', error);
   return NextResponse.json({ error: error.message }, { status: 500 })
   };
   
