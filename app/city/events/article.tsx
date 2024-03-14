@@ -1,10 +1,10 @@
-import type { Web3event } from "../components/web3eventType";
+import { CityEventType } from "@/app/components/cityEventType";
 import Link from "next/link";
 import { Eye } from "lucide-react";
 import Image from "next/image";
 
 type Props = {
-	web3event: Web3event;
+	web3event: CityEventType;
 };
 
 export const Article: React.FC<Props> = ({ web3event }) => {
@@ -17,7 +17,7 @@ export const Article: React.FC<Props> = ({ web3event }) => {
 						src={web3event.image}
 						fill={true}
 						alt={web3event.title}
-						className=" hover:brightness-50"
+						className="hover:brightness-50"
 					/> 
 				</div>
 				<div className="min-h-[50px] lg:min-h-[60px]">
@@ -36,7 +36,7 @@ export const Article: React.FC<Props> = ({ web3event }) => {
 						{web3event.addr}
 				</span>
 				<div className="h-px w-full bg-zinc-700 my-2"></div>
-				<div className="mt-2 flex justify-between gap-2 items-center">
+				<div className="my-3 flex justify-between gap-2 items-center">
 					<span className="text-xs duration-1000 text-zinc-300 group-hover:text-white 
 						group-hover:border-zinc-200 drop-shadow-orange"
 					>
