@@ -93,7 +93,7 @@ const  MapView: React.FC<Props> = ({web3eventMap}) => {
 
     return (
         <div className="px-6 mx-auto max-w-[100rem] lg:px-8 pt-[70px] h-screen">
-            <div className="max-w-2xl mx-auto lg:mx-0">
+            {/* <div className="max-w-2xl mx-auto lg:mx-0">
                 <h2 className="text-3xl font-bold tracking-tight text-zinc-100 sm:text-4xl">
                     CommuneAI
                 </h2>
@@ -101,10 +101,10 @@ const  MapView: React.FC<Props> = ({web3eventMap}) => {
                     This is description about web3events for peopel who love blockchain.
                 </p>
             </div>
-            <div className="w-full h-px mt-4 bg-zinc-800" />
-            <div className="w-full flex">
+            <div className="w-full h-px mt-4 bg-zinc-800" /> */}
+            <div className="w-full flex pt-3">
                     <SideBar web3eventMap={web3eventMap} onTitleClick={web3eventListClickHandle}/>
-                <div id="web3eventMap" className="w-full h-[80vh]">
+                <div id="web3eventMap" className="w-full h-[88vh]">
                 </div>
             </div>
         </div>
@@ -308,7 +308,7 @@ const SideBar:React.FC<{ web3eventMap: Web3eventMapdata[]; onTitleClick: (event:
     }));
     
     return (
-        <div className="w-[450px] h-[80vh] bg-black py-2 ">
+        <div className="w-[450px] h-[88vh] bg-black py-2 ">
             <div className="h-[80px] px-2 py-2 flex justify-center items-center">
                 <AutoComplete
                     popupClassName="certain-category-search-dropdown"
@@ -330,7 +330,7 @@ const SideBar:React.FC<{ web3eventMap: Web3eventMapdata[]; onTitleClick: (event:
                     <Input.Search size="large" placeholder="search event title"/>
                 </AutoComplete>
             </div>
-            <div className="w-full h-[calc(80vh-96px)] px-2 overflow-y-auto scroll grid gap-2">
+            <div className="w-full h-[calc(88vh-96px)] px-2 overflow-y-auto scroll grid gap-2">
                 {filterEvent.map((event, key) => (
                     <div key={key} onClick={() => onTitleClick(event)} className="w-full rounded-lg border border-zinc-800 px-3 py-2">
                         <div className="text-zinc-200 font-semibold text-lg">{event?.title}</div>
