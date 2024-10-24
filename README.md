@@ -2,6 +2,10 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
+<h1>
+  This is web3 events finder web app for people who love web3 and blochchain
+</h1>
+
 First, run the development server:
 
 ```bash
